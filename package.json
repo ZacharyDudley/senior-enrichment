@@ -1,7 +1,7 @@
 {
-  "name": "senior_enrichment",
+  "name": "rostr",
   "version": "0.0.1",
-  "description": "A review time project",
+  "description": "It's Monday 9:00 am- do you know where your students are?",
   "main": "index.js",
   "scripts": {
     "test": "mocha **/*.test.js *.test.js",
