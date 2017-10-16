@@ -1,11 +1,12 @@
-module.exports = function(sequelize, DataTypes) {
-  sequelize.define('campus', {
+const Sequelize = require('sequelize')
+const db = require('../index')
+
+module.exports = db.define('campus', {
     name: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   })
-}

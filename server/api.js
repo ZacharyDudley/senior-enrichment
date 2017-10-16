@@ -13,6 +13,7 @@ const campus = require('../db/models/campus')
 
 //CAMPUSES
 api.get('/campuses', (req, res, next) => {
+	console.log(db.campus)
   campus.findAll()
   .then(camp => res.json(camp))
   .catch(next)
