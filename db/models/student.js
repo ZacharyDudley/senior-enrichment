@@ -1,13 +1,14 @@
 const Sequelize = require('sequelize')
 const db = require('../index')
 
-module.exports = db.define('student', {
+const Student = db.define('student', {
     name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
     email: {
       type: Sequelize.STRING,
-      validate: {isEmail: true}
     }
   })
+
+  module.exports = Student
