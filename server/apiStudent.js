@@ -21,5 +21,18 @@ api.post('/', (req, res, next) => {
 	.catch(next)
 })
 
+api.put('/:studentId', (req, res, next) => {
+	student.findById(req.params.studentId)
+	.then(stud => stud.update(req.body))
+	.then(newstud => res.json(newstud))
+	.catch(next)
+})
+
+api.delete('/:studentId', (req, res, next) => {
+	student.findById(req.params.studentId)
+	.then(stud => stud.destroy())
+	.then(() => res.sendStatus(204))
+	.catch(next)
+})
 
 module.exports = api
