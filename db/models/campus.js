@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
-const db = require('../../db')
+const path = require('path')
+const db = require(path.resolve(__dirname, '../index.js'))
 
 const Campus = db.define('campus', {
     name: {
@@ -8,8 +9,10 @@ const Campus = db.define('campus', {
     },
     image: {
       type: Sequelize.STRING
+    },
+    place: {
+      type: Sequelize.STRING
     }
   })
-  console.log(Campus)
 
   module.exports = Campus

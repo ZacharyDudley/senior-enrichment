@@ -35,12 +35,16 @@ if (module === require.main) {
   */
 
   const PORT = 1337
+  const path = require('path')
 
-  const db = require('../db')
+  const db = require(path.resolve(__dirname, '../db/index.js'))
   db.sync({force: true})
   .then(() => {
     console.log('db synced')
+    // const {Student} = require('../db/models')
+          // Student.create({name: 'Zach', email: 'Zach@Zach.Zach'}).then(student => student.setCampus(1, {save: true}))
     app.listen(PORT, () => console.log(`server listening on port ${PORT}`))
   })
   .catch(err => console.error(err));
 }
+
