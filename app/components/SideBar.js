@@ -9,8 +9,8 @@ const SideBar = () => (
     <div id="sideBody">
       <div id="buttonBox">
         <ul>
-          <Link to="/campus">CAMPUSES</Link>
-          <Link to="/student">STUDENTS</Link>
+          <Link to="/campuses">CAMPUSES</Link>
+          <Link to="/students">STUDENTS</Link>
         </ul>
       </div>
     </div>

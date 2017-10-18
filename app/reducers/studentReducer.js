@@ -7,7 +7,7 @@ const initialState = {
 
 const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS'
 const GET_STUDENT_BY_ID = 'GET_STUDENT_BY_ID'
-const POST_STUDENT = 'POST_STUDENT'
+const ADD_STUDENT = 'ADD_STUDENT'
 const UPDATE_STUDENT = 'UPDATE_STUDENT'
 const DELETE_STUDENT = 'DELETE_STUDENT'
 
@@ -24,9 +24,9 @@ export function getStudentById (studentId) {
   }
 }
 
-export function postStudent () {
+export function addStudent () {
   return {
-    type: POST_STUDENT,
+    type: ADD_STUDENT,
   }
 }
 
@@ -74,7 +74,7 @@ export default function(state = initialState, action) {
     case GET_STUDENT_BY_ID:
       return Object.assign({}, state, {student: action.studentId})
 
-    case POST_STUDENT:
+    case ADD_STUDENT:
       return Object.assign({}, state, {student: action.studentId})
 
     case UPDATE_STUDENT:
@@ -85,4 +85,4 @@ export default function(state = initialState, action) {
 
     default: return state
   }
-};
+}

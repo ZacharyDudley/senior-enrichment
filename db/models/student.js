@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('../index')
+const db = require('../../db')
 
 const Student = db.define('student', {
     name: {
@@ -10,5 +10,5 @@ const Student = db.define('student', {
       type: Sequelize.STRING,
     }
   })
-
+console.log(Student)
   module.exports = Student

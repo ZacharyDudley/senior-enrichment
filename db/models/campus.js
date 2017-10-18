@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('../index')
+const db = require('../../db')
 
 const Campus = db.define('campus', {
     name: {
@@ -10,5 +10,6 @@ const Campus = db.define('campus', {
       type: Sequelize.STRING
     }
   })
+  console.log(Campus)
 
   module.exports = Campus

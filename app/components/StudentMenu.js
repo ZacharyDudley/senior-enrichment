@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const CampusMenu = () => (
-    <div>
-        <Link to="TODO" >EARTH</Link>
-    </div>
-  )
+const StudentMenu = (props) => {
+  console.log(props)
+    return (
+      <div>
+      {
+        props.students.map(student => {
+          return (
+          <Link key={student.id} to={`/students/${student.id}`} >{student.name}</Link>
+          )
+        })
+      }
+      </div>
+    )
+}
 
-export default CampusMenu
+const mapState = ({ students }) => ({ students })
+
+export default connect(mapState)(StudentMenu)

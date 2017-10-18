@@ -1,25 +1,48 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import createHistory from 'history/createBrowserHistory'
+import Page from './Page';
 import SideBar from './SideBar';
+import Home from './home';
 import CampusMenu from './CampusMenu';
+import SingleCampus from './SingleCampus';
 import StudentMenu from './StudentMenu';
-import Home from './Home';
+import SingleStudent from './SingleStudent';
+import { fetchStudents } from '../reducers/studentReducer'
+import { fetchCampuses } from '../reducers/campusReducer'
 
-const Routes = () => (
-    <Router>
-      <div>
-        <SideBar />
 
-        <Home />
+class Routes extends Component {
+  componentDidMount() {
+    this.props.fetchInitialData()
+  }
 
-    {/*    <Route path="/campuses" component={CampusMenu} /> */}
-    {/*    <Route path="/students" component={StudentMenu} /> */}
-    {/*<Route path="/campuses/:campusId" component={SingleCampus} /> */}
-    {/*<Route path="/students/:studentId" component={SingleStudent} />*/}
-      </div>
-    </Router>
-  )
+  render() {
+    return (
+      <Router>
+        <div id="mainBox">
+          <SideBar />
+          <Page>
+            <Switch>
+                <Route exact path="/campuses" component={CampusMenu} />
+                <Route path="/campuses/:campusId" component={SingleCampus} />
+                <Route exact path="/students" component={StudentMenu} />
+                <Route path="/students/:studentId" component={SingleStudent} />
 
-export default Routes
+                <Route component={Home} />
+              </Switch>
+            </Page>
+          </div>
+      </Router>
+  )}
+}
+
+const mapDispatch = dispatch => ({
+  fetchInitialData: () => {
+    dispatch(fetchCampuses())
+    dispatch(fetchStudents())
+  }
+})
+
+export default connect(null, mapDispatch)(Routes)
