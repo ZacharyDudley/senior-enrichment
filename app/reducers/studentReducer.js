@@ -18,8 +18,8 @@ const getAllStudents = allStudents => ({type: GET_ALL_STUDENTS, allStudents})
 const getStudentById = student => ({type: GET_STUDENT_BY_ID, student})
 const setStudent = student => ({type: SET_STUDENT, student})
 const addStudent = student => ({type: ADD_STUDENT, student})
-const reviseStudent = studentId => ({type: REVISE_STUDENT, studentId})
-const destroyStudent = singleStudent => ({type: DESTROY_STUDENT, singleStudent})
+const reviseStudent = student => ({type: REVISE_STUDENT, student})
+const destroyStudent = id => ({type: DESTROY_STUDENT, id})
 
 //REDUCER
 export default function(state = initialState, action) {
@@ -39,13 +39,15 @@ export default function(state = initialState, action) {
 
       case REVISE_STUDENT:
       return Object.assign({}, state, {allStudents: state.allStudents.map(function (student) {
-        if (student.id === action.singleStudent.id) {
-          return action.singleCampus
+        if (student.id === action.student.id) {
+          return action.student
         }
       })})
 
       case DESTROY_STUDENT:
-        return Object.assign({}, state, {allStudents: state.allStudents.filter(student => (student.id !== action.singleStudent.id))})
+        return Object.assign({}, state, {allStudents: state.allStudents.filter(student => {
+          return student.id !== +action.id
+        })})
 
      default: return state
   }
@@ -69,7 +71,10 @@ export const postStudent = student => dispatch => {
 
 export const updateStudent = (id, student) => dispatch => {
   axios.put(`/api/students/${id}`, student)
-    .then(res => dispatch(reviseStudent(res.data)))
+    .then(res => {
+      dispatch(reviseStudent(res.data))
+      dispatch(setStudent(res.data))
+    })
 }
 
 export const deleteStudent = id => dispatch => {

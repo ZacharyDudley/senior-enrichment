@@ -8,32 +8,14 @@ import { fetchStudent, deleteStudent, updateStudent } from '../reducers/studentR
 class SingleStudent extends Component {
   constructor(props){
     super(props)
-    let id = this.props.match.params.studentId
-    this.props.fetchStudent(id)
+    this.id = this.props.match.params.studentId
+    this.props.fetchStudent(this.id)
 
+    this.submitEdit = this.submitEdit.bind(this)
     this.deleteButton = this.deleteButton.bind(this)
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   if (this.props.student.singleStudent !== nextProps.student.singleStudent) {
-  //     let schoolId = nextProps.student.singleStudent.campusId
-  //     this.props.fetchCampus(schoolId)
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   console.log(this.props)
-  //   this.setStudentCampus()
-  // }
-
-  // setStudentCampus() {
-  //   let schoolId = this.props.student.singleStudent.campusId
-  //   this.props.fetchCampus(schoolId)
-  // }
-
-
   render () {
-    console.log(this.props.student.singleStudent.campus)
     return (
       <div>
       <h1>{this.props.student.singleStudent.name}</h1>
@@ -47,20 +29,33 @@ class SingleStudent extends Component {
   alterStudent () {
     return (
       <div id="alterStudentBox">
-          <button type="button" name="editStudent" onClick={this.editButton}>EDIT</button>
-          <button type="button" name="deleteStudent" onClick={this.deleteButton}>DELETE</button>
+        <h3>EDIT STUDENT</h3>
+        <form name="alterStudentForm" onSubmit={this.submitEdit}>
+          <div>
+            <input name="studentName" type="text" placeholder="Student name" />
+          </div>
+          <div>
+            <input name="studentImage" type="text" placeholder="Student email address" />
+          </div>
+          <button type="submit" name="editStudent">EDIT</button>
+          </form>
+          <button type="button" name="deleteStudent" onClick={this.deleteButton}>DELETE STUDENT</button>
       </div>
     )
   }
 
-  editButton(event) {
+  submitEdit(event) {
     event.preventDefault()
+    let editedStudent = { name: event.target.studentName.value, image: event.target.studentImage.value }
+    this.props.updateStudent(this.id, editedStudent)
 
+    event.target.studentName.value = ''
+    event.target.studentImage.value = ''
   }
 
   deleteButton(event) {
     event.preventDefault()
-    this.props.deleteStudent(this.props.student.singleStudent.id)
+    this.props.deleteStudent(this.id)
     this.props.history.push('/students');
   }
 

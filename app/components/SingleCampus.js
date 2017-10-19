@@ -13,14 +13,6 @@ class SingleCampus extends Component {
     this.submitEdit = this.submitEdit.bind(this)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('THIS', this.props)
-  //   if (this.props.campus.singleCampus.name !== nextProps.campus.singleCampus.name || this.props.campus.singleCampus.image !== nextProps.campus.singleCampus.image) {
-  //     console.log('IF')
-  //     this.props.fetchCampus(this.id)
-  //   }
-  // }
-
   render () {
     return (
       <div>
@@ -38,9 +30,7 @@ class SingleCampus extends Component {
   }
 
   renderStudents(){
-    console.log('IN RENDER', this.props)
     return this.props.campus.singleCampus.students.map(student => {
-      console.log('MAP', student)
       return (
         <div key={student.id}>
           <Link to={`/students/${student.id}`}>
@@ -55,6 +45,7 @@ class SingleCampus extends Component {
   alterCampus () {
     return (
       <div id="alterCampusBox">
+        <h3>EDIT CAMPUS</h3>
         <form name="alterCampusForm" onSubmit={this.submitEdit}>
           <div>
             <input name="campusName" type="text" placeholder="Campus name" />
@@ -63,8 +54,8 @@ class SingleCampus extends Component {
             <input name="campusImage" type="text" placeholder="Campus picture URL" />
           </div>
           <button type="submit" name="editCampus">EDIT</button>
-          <button type="button" name="deleteCampus" onClick={this.deleteButton}>DELETE</button>
           </form>
+          <button type="button" name="deleteCampus" onClick={this.deleteButton}>DELETE CAMPUS</button>
       </div>
     )
   }

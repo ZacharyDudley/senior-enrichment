@@ -31,6 +31,7 @@ class CampusMenu extends Component {
   submitNewCampus () {
     return (
       <div id="newCampusBox">
+        <h3>CREATE NEW CAMPUS</h3>
         <form name="newCampusForm" onSubmit={this.submit}>
         <div>
           <input name="campusName" type="text" placeholder="Campus name" />

@@ -60,13 +60,23 @@ api.get('/students/:studentId', (req, res, next) => {
 })
 
 api.put('/students/:studentId', (req, res, next) => {
-	student.update({
+	student.findById(req.params.studentId, { include: [campus] })
+		.then(stud => stud.update({
+			name: req.body.name,
+			email: req.body.email}))
+		.then(kid => res.json(kid))
+		.catch(next)
+})
+
+api.delete('/students/:studentId', (req, res, next) => {
+	student.destroy({
 		where: {
 			id: req.params.studentId
 		}
 	})
-	.then(stud => res.json(stud))
-	.catch(next)
+		.then(() => {
+			res.sendStatus(204)})
+		.catch(next)
 })
 
 api.use((req, res, next) => {
