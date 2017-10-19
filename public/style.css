@@ -1,5 +1,17 @@
 * {
   box-sizing: border-box;
+  font-family: 'Cabin Sketch', cursive;
+  font-family: 'Rambla', sans-serif;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: rgb(111, 64, 158);
 }
 
 #mainBox {
@@ -19,8 +31,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
-  background: rgb(148, 143, 143);
 }
 
 /* #logoBox {
@@ -35,19 +45,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  background: rgb(100, 98, 98);
 }
 
 #buttonBox {
   /* flex: 0 1 80%; */
+  border-width: medium;
 
   display: flex;
   flex-direction: column;
-
-  background: rgb(42, 44, 199);
 }
 
+#buttonList {
+  flex: 0 1 100%;
+  background: white;
+  display: grid;
+}
 
 #contentBodyBox {
   flex: 0 1 80%;
@@ -55,22 +67,6 @@
   display: flex;
   flex-direction: column;
 
-  background: rgb(59, 57, 57);
-}
-
-#headBody {
-  flex: 0 1 15%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-
-  background: rgb(107, 80, 80);
-}
-
-#headBodyTitle {
-  flex: 0 1 35%;
-  align-self: flex-end;
 }
 
 #mainBody {
@@ -78,14 +74,45 @@
 
   display: flex;
   flex-direction: column;
+  align-content: center;
+}
 
-  background: rgb(73, 56, 56);
+#mainBody h1 {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 5.5rem;
 }
 
 #campusListBox {
   flex: 0 1 80%;
+  display: grid;
+
 }
 
-#submitCampusBox {
+#newCampusBox {
   flex: 0 1 20%;
+  border-width: thick;
+}
+
+#newCampusBox h3 {
+  text-align: center;
+}
+
+#home h1 {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 5.5rem;
+  text-align: center;
+
+}
+
+#home h3 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+#studentListBox {
+  display: grid;
+}
+
+#studentInfo {
+  border-width: thick;
 }

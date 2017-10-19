@@ -12,7 +12,9 @@ class CampusMenu extends Component {
 
   render () {
     return (
-      <div id="campusListBox">
+      <div>
+      <h1>ALL CAMPUSES</h1>
+      <ul id="campusListBox">
       {
         this.props.campuses.allCampuses.map(campus => {
           return (
@@ -20,10 +22,11 @@ class CampusMenu extends Component {
           )
         })
       }
+      </ul>
+
       <div id="submitCampusBox">
         { this.submitNewCampus() }
       </div>
-
       </div>
     )
   }
@@ -39,7 +42,7 @@ class CampusMenu extends Component {
           <div>
           <input name="campusImage" type="text" placeholder="Campus picture URL" />
           </div>
-          <button type="submit">SUBMIT</button>
+          <button type="submit">CREATE</button>
         </form>
       </div>
     )

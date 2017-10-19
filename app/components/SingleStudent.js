@@ -19,8 +19,10 @@ class SingleStudent extends Component {
     return (
       <div>
       <h1>{this.props.student.singleStudent.name}</h1>
+      <div id="studentInfo">
       {this.props.student.singleStudent.campus && <h3>{this.props.student.singleStudent.campus.name}</h3>}
         <h3>{this.props.student.singleStudent.email}</h3>
+      </div>
       { this.alterStudent() }
       </div>
     )
