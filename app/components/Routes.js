@@ -7,6 +7,7 @@ import SideBar from './SideBar';
 import Home from './home';
 import CampusMenu from './CampusMenu';
 import SingleCampus from './SingleCampus';
+import SingleCampusDumb from './SingleCampusDumb';
 import StudentMenu from './StudentMenu';
 import SingleStudent from './SingleStudent';
 import { fetchStudents } from '../reducers/studentReducer'

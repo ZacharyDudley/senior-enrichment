@@ -19,19 +19,16 @@ class CampusMenu extends Component {
       {
         this.props.campuses.allCampuses.map(campus => {
           return (
-          <Link key={campus.id} to={`/campuses/${campus.id}`} id={campus.id} onClick={(e) => this.setSingleCampus(campus.id, e)}>{campus.name}</Link>
+          <Link key={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link>
           )
         })
       }
       <div id="submitCampusBox">
         { this.submitNewCampus() }
       </div>
+
       </div>
     )
-  }
-
-  setSingleCampus(id, event) {
-    this.props.fetchCampus(id)
   }
 
   submitNewCampus () {

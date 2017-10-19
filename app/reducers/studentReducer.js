@@ -8,6 +8,7 @@ const initialState = {
 //ACTION TYPES
 const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS'
 const GET_STUDENT_BY_ID = 'GET_STUDENT_BY_ID'
+const SET_STUDENT = 'SET_STUDENT'
 const ADD_STUDENT = 'ADD_STUDENT'
 const REVISE_STUDENT = 'REVISE_STUDENT'
 const DESTROY_STUDENT = 'DESTROY_STUDENT'
@@ -15,6 +16,7 @@ const DESTROY_STUDENT = 'DESTROY_STUDENT'
 //ACTION CREATORS
 const getAllStudents = allStudents => ({type: GET_ALL_STUDENTS, allStudents})
 const getStudentById = student => ({type: GET_STUDENT_BY_ID, student})
+const setStudent = student => ({type: SET_STUDENT, student})
 const addStudent = student => ({type: ADD_STUDENT, student})
 const reviseStudent = studentId => ({type: REVISE_STUDENT, studentId})
 const destroyStudent = studentId => ({type: DESTROY_STUDENT, studentId})
@@ -29,7 +31,10 @@ export default function(state = initialState, action) {
     case GET_STUDENT_BY_ID:
       return Object.assign({}, state, {singleStudent: action.singleStudent})
 
-    case ADD_STUDENT:
+    case SET_STUDENT:
+      return Object.assign({}, state, {singleStudent: action.student})
+
+      case ADD_STUDENT:
       return Object.assign({}, state, {allStudents: [...state.allStudents, action.student]})
 
     case REVISE_STUDENT:
@@ -50,7 +55,7 @@ export const fetchStudents = () => dispatch => {
 
 export const fetchStudent = id => dispatch => {
   axios.get(`/api/students/${id}`)
-    .then(res => dispatch(getStudentById(res.data)))
+    .then(res => dispatch(setStudent(res.data)))
 }
 
 export const postStudent = student => dispatch => {

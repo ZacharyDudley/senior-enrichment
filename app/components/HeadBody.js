@@ -3,7 +3,7 @@ import React from 'react'
 const HeadBody = () => (
   <div id="headBody">
     <div id="headBodyTitle">
-      <h1>PAGE TITLE</h1>
+      <h1>Rostr</h1>
     </div>
   </div>
 )
