@@ -5,7 +5,9 @@ Campus.hasMany(Student, {
   onDelete: 'cascade', // remove all associated stories
   hooks: true // makes the cascade actually work. Yay Sequelize!
 });
-Student.belongsTo(Campus, { as: 'campus' });
+Student.belongsTo(Campus
+  // , { as: 'campus' }
+);
 module.exports = {
     Campus,
     Student

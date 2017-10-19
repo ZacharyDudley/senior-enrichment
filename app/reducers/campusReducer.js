@@ -17,7 +17,7 @@ const getAllCampuses = allCampuses => ({type: GET_ALL_CAMPUSES, allCampuses})
 const getCampusById = campus => ({type: GET_CAMPUS_BY_ID, campus})
 const setCampus = campus => ({type: SET_CAMPUS, campus})
 const addCampus = campus => ({type: ADD_CAMPUS, campus})
-const reviseCampus = campusId => ({type: REVISE_CAMPUS, campusId})
+const reviseCampus = campus => ({type: REVISE_CAMPUS, campus})
 const destroyCampus = campusId => ({type: DESTROY_CAMPUS, campusId})
 
 //REDUCERS
@@ -36,17 +36,15 @@ export default function(state = initialState, action) {
     case SET_CAMPUS:
       return Object.assign({}, state, {singleCampus: action.campus})
 
+    case REVISE_CAMPUS:
+      return Object.assign({}, state, {allCampuses: state.allCampuses.map(campus => {
+        if (campus.id === action.campus.id) {
+          return action.campus
+        }
+      })})
 
-    // case REVISE_CAMPUS:
-    //   return {
-    //     ...state,
-
-    //   }
-
-    // case DESTROY_CAMPUS:
-    //   return {
-
-    //   }
+    case DESTROY_CAMPUS:
+      return Object.assign({}, state, {allCampuses: state.allCampuses.filter(campus => (campus.id !== action.singleCampus.id))})
 
     default: return state
   }
@@ -71,7 +69,10 @@ export const postCampus = campus => dispatch => {
 
 export const updateCampus = (id, campus) => dispatch => {
   axios.put(`/api/campuses/${id}`, campus)
-    .then(res => dispatch(reviseCampus(res.data)))
+    .then(res => {
+      dispatch(reviseCampus(res.data))
+      dispatch(setCampus(res.data))
+    })
 }
 
 export const deleteCampus = id => dispatch => {

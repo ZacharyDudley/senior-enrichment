@@ -13,8 +13,7 @@ const campus = require('../db/models/campus')
 
 //CAMPUSES
 api.get('/campuses', (req, res, next) => {
-	console.log(db.campus)
-  campus.findAll()
+  campus.findAll({ include: [student] })
   .then(camp => res.json(camp))
   .catch(next)
 })
@@ -26,15 +25,24 @@ api.post('/campuses', (req, res, next) => {
 })
 
 api.get('/campuses/:campusId', (req, res, next) => {
-	campus.findById(req.params.campusId)
+	campus.findById(req.params.campusId, { include: [student] })
 	.then(camp => res.json(camp))
 	.catch(next)
+})
+
+api.put('/campuses/:campusId', (req, res, next) => {
+	campus.findById(req.params.campusId, { include: [student] })
+		.then(school => school.update({
+			name: req.body.name,
+			image: req.body.image}))
+		.then(camp => res.json(camp))
+		.catch(next)
 })
 
 
 //STUDENTS
 api.get('/students', (req, res, next) => {
-	student.findAll()
+	student.findAll({ include: [campus] })
 	.then(students => res.json(students))
 	.catch(next)
 })
@@ -46,7 +54,17 @@ api.post('/students', (req, res, next) => {
 })
 
 api.get('/students/:studentId', (req, res, next) => {
-	student.findById(req.params.studentId)
+	student.findById(req.params.studentId, { include: [campus] })
+	.then(stud => res.json(stud))
+	.catch(next)
+})
+
+api.put('/students/:studentId', (req, res, next) => {
+	student.update({
+		where: {
+			id: req.params.studentId
+		}
+	})
 	.then(stud => res.json(stud))
 	.catch(next)
 })

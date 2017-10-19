@@ -11,7 +11,6 @@ class StudentMenu extends Component {
   }
 
   render () {
-    console.log(this.props.students)
     return (
       <div id="studentListBox">
       {

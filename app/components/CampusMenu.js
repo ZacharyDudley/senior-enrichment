@@ -8,12 +8,9 @@ class CampusMenu extends Component {
     super()
 
     this.submit = this.submit.bind(this)
-    // this.setSingleCampus = this.setSingleCampus.bind(this)
   }
 
   render () {
-    // console.log(this.props)
-
     return (
       <div id="campusListBox">
       {
@@ -34,7 +31,7 @@ class CampusMenu extends Component {
   submitNewCampus () {
     return (
       <div id="newCampusBox">
-        <form name="newCampus" onSubmit={this.submit}>
+        <form name="newCampusForm" onSubmit={this.submit}>
         <div>
           <input name="campusName" type="text" placeholder="Campus name" />
           </div>

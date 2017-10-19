@@ -19,7 +19,7 @@ const getStudentById = student => ({type: GET_STUDENT_BY_ID, student})
 const setStudent = student => ({type: SET_STUDENT, student})
 const addStudent = student => ({type: ADD_STUDENT, student})
 const reviseStudent = studentId => ({type: REVISE_STUDENT, studentId})
-const destroyStudent = studentId => ({type: DESTROY_STUDENT, studentId})
+const destroyStudent = singleStudent => ({type: DESTROY_STUDENT, singleStudent})
 
 //REDUCER
 export default function(state = initialState, action) {
@@ -37,13 +37,17 @@ export default function(state = initialState, action) {
       case ADD_STUDENT:
       return Object.assign({}, state, {allStudents: [...state.allStudents, action.student]})
 
-    case REVISE_STUDENT:
-      return Object.assign({}, state, {student: action.studentId})
+      case REVISE_STUDENT:
+      return Object.assign({}, state, {allStudents: state.allStudents.map(function (student) {
+        if (student.id === action.singleStudent.id) {
+          return action.singleCampus
+        }
+      })})
 
-    case DESTROY_STUDENT:
-      return Object.assign({}, state, {student: action.studentId})
+      case DESTROY_STUDENT:
+        return Object.assign({}, state, {allStudents: state.allStudents.filter(student => (student.id !== action.singleStudent.id))})
 
-    default: return state
+     default: return state
   }
 }
 
@@ -70,25 +74,6 @@ export const updateStudent = (id, student) => dispatch => {
 
 export const deleteStudent = id => dispatch => {
   dispatch(destroyStudent(id))
+  dispatch(setStudent({}))
   axios.delete(`/api/students/${id}`)
 }
-
-// export function fetchStudents () {
-//   return function thunk (dispatch) {
-//     return axios.get('/api/students')
-//       .then(res => res.data)
-//       .then(students => {
-//         dispatch(getAllStudents(students))
-//       })
-//   }
-// }
-
-// export function postStudent (student) {
-//   return function thunk (dispatch) {
-//     return axios.post('/api/students', student)
-//       .then(res => res.data)
-//       .then(newStudent => {
-//         dispatch(getStudentById(newStudent))
-//       })
-//   }
-// }

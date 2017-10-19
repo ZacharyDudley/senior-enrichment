@@ -1,8 +1,10 @@
 const api = require('express').Router()
 const student = require('../db').models.student
+const campus = require('../db').models.campus
 
 api.get('/students', (req, res, next) => {
-	student.findAll()
+	console.log(campus)
+	student.findAll({ include: [campus] })
 	.then(students => res.json(students))
 	.catch(next)
 })
