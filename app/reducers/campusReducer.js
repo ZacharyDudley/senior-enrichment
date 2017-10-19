@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchStudents } from './studentReducer'
 
 const initialState = {
   allCampuses: [],
@@ -6,7 +7,6 @@ const initialState = {
 }
 //ACTION TYPES
 const GET_ALL_CAMPUSES = 'GET_ALL_CAMPUSES'
-const GET_CAMPUS_BY_ID = 'GET_CAMPUS_BY_ID'
 const SET_CAMPUS = 'SET_CAMPUS'
 const ADD_CAMPUS = 'ADD_CAMPUS'
 const REVISE_CAMPUS = 'REVISE_CAMPUS'
@@ -14,11 +14,10 @@ const DESTROY_CAMPUS = 'DESTROY_CAMPUS'
 
 //ACTION CREATORS
 const getAllCampuses = allCampuses => ({type: GET_ALL_CAMPUSES, allCampuses})
-const getCampusById = campus => ({type: GET_CAMPUS_BY_ID, campus})
 const setCampus = campus => ({type: SET_CAMPUS, campus})
 const addCampus = campus => ({type: ADD_CAMPUS, campus})
 const reviseCampus = campus => ({type: REVISE_CAMPUS, campus})
-const destroyCampus = campusId => ({type: DESTROY_CAMPUS, campusId})
+const destroyCampus = id => ({type: DESTROY_CAMPUS, id})
 
 //REDUCERS
 export default function(state = initialState, action) {
@@ -26,9 +25,6 @@ export default function(state = initialState, action) {
 
     case GET_ALL_CAMPUSES:
       return Object.assign({}, state, {allCampuses: action.allCampuses})
-
-    case GET_CAMPUS_BY_ID:
-      return Object.assign({}, state, {singleCampus: action.singleCampus})
 
     case ADD_CAMPUS:
       return Object.assign({}, state, {allCampuses: [...state.allCampuses, action.campus]})
@@ -44,7 +40,7 @@ export default function(state = initialState, action) {
       })})
 
     case DESTROY_CAMPUS:
-      return Object.assign({}, state, {allCampuses: state.allCampuses.filter(campus => (campus.id !== action.singleCampus.id))})
+      return Object.assign({}, state, {allCampuses: state.allCampuses.filter(campus => (campus.id !== +action.id))})
 
     default: return state
   }
@@ -77,5 +73,7 @@ export const updateCampus = (id, campus) => dispatch => {
 
 export const deleteCampus = id => dispatch => {
   dispatch(destroyCampus(id))
+  dispatch(setCampus({}))
+  dispatch(fetchStudents())
   axios.delete(`/api/campuses/${id}`)
 }

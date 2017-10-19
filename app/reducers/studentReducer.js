@@ -7,7 +7,6 @@ const initialState = {
 
 //ACTION TYPES
 const GET_ALL_STUDENTS = 'GET_ALL_STUDENTS'
-const GET_STUDENT_BY_ID = 'GET_STUDENT_BY_ID'
 const SET_STUDENT = 'SET_STUDENT'
 const ADD_STUDENT = 'ADD_STUDENT'
 const REVISE_STUDENT = 'REVISE_STUDENT'
@@ -15,7 +14,6 @@ const DESTROY_STUDENT = 'DESTROY_STUDENT'
 
 //ACTION CREATORS
 const getAllStudents = allStudents => ({type: GET_ALL_STUDENTS, allStudents})
-const getStudentById = student => ({type: GET_STUDENT_BY_ID, student})
 const setStudent = student => ({type: SET_STUDENT, student})
 const addStudent = student => ({type: ADD_STUDENT, student})
 const reviseStudent = student => ({type: REVISE_STUDENT, student})
@@ -27,9 +25,6 @@ export default function(state = initialState, action) {
 
     case GET_ALL_STUDENTS:
       return Object.assign({}, state, {allStudents: action.allStudents})
-
-    case GET_STUDENT_BY_ID:
-      return Object.assign({}, state, {singleStudent: action.singleStudent})
 
     case SET_STUDENT:
       return Object.assign({}, state, {singleStudent: action.student})

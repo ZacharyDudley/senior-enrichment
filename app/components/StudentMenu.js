@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { postStudent } from '../reducers/studentReducer'
+import { postStudent, fetchStudents } from '../reducers/studentReducer'
 
 class StudentMenu extends Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    this.props.fetchStudents()
     this.submit = this.submit.bind(this)
   }
 
@@ -59,6 +59,6 @@ class StudentMenu extends Component {
 
 const mapState = (state) => ({ students: state.student })
 
-const mapDispatch = { postStudent }
+const mapDispatch = { postStudent, fetchStudents }
 
 export default connect(mapState, mapDispatch)(StudentMenu)

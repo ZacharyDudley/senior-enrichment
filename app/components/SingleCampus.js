@@ -11,6 +11,7 @@ class SingleCampus extends Component {
     this.props.fetchCampus(this.id)
 
     this.submitEdit = this.submitEdit.bind(this)
+    this.deleteButton = this.deleteButton.bind(this)
   }
 
   render () {
@@ -73,7 +74,7 @@ class SingleCampus extends Component {
 
   deleteButton(event) {
     event.preventDefault()
-    // this.props.deleteCampus(this.props.campus.singleCampus.campusId)
+    this.props.deleteCampus(this.id)
     this.props.history.push('/campuses');
   }
 

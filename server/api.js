@@ -39,6 +39,17 @@ api.put('/campuses/:campusId', (req, res, next) => {
 		.catch(next)
 })
 
+api.delete('/campuses/:campusId', (req, res, next) => {
+	campus.destroy({
+		where: {
+			id: req.params.campusId
+		}
+	})
+		.then(() => {
+			res.sendStatus(204)})
+		.catch(next)
+})
+
 
 //STUDENTS
 api.get('/students', (req, res, next) => {

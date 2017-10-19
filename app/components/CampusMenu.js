@@ -48,8 +48,6 @@ class CampusMenu extends Component {
   submit(event) {
     event.preventDefault()
     let newCamp = { name: event.target.campusName.value, image: event.target.campusImage.value }
-    // !newCamp.name ?
-    // console.log('SUBMIT', this.props)
     this.props.postCampus(newCamp)
 
     event.target.campusName.value = ''
