@@ -1,5 +1,5 @@
 const api = require('express').Router()
-const student = require('../db/models/student')
+const student = require('../db').models.student
 
 api.get('/students', (req, res, next) => {
 	student.findAll()
