@@ -19,12 +19,12 @@ class SingleCampus extends Component {
       <div>
         <h1>{this.props.campus.singleCampus.name}</h1>
         <img src={this.props.campus.singleCampus.image} />
-      { this.alterCampus() }
         <div id="campusStudents">
         <h2>STUDENTS</h2>
         {
           Object.keys(this.props.campus.singleCampus).length && this.renderStudents()
         }
+        { this.alterCampus() }
         </div>
       </div>
     )

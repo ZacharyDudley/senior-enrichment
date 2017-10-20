@@ -39,6 +39,20 @@ class SingleStudent extends Component {
           <div>
             <input name="studentImage" type="text" placeholder="Student email address" />
           </div>
+{
+          // <select id="studentCampusSelect" name="studentCampusSelect" onChange={this.activateButton}>
+          // <option value="" disabled selected hidden>Select a campus</option>
+          // {
+          //   this.props.campus.allCampuses.map( camp => {
+          //     return (
+          //       <option key={camp.id} value={camp.id}>
+          //       {camp.name}
+          //       </option>
+          //     )
+          //   })
+          // }
+          // </select>
+        }
           <button type="submit" name="editStudent">EDIT</button>
           </form>
           <button type="button" name="deleteStudent" onClick={this.deleteButton}>DELETE STUDENT</button>
@@ -48,11 +62,14 @@ class SingleStudent extends Component {
 
   submitEdit(event) {
     event.preventDefault()
-    let editedStudent = { name: event.target.studentName.value, image: event.target.studentImage.value }
+    let editedStudent = { name: event.target.studentName.value, image: event.target.studentImage.value,
+      // campusId: event.target.studentCampusSelect.value
+    }
     this.props.updateStudent(this.id, editedStudent)
 
     event.target.studentName.value = ''
     event.target.studentImage.value = ''
+    // event.target.studentCampusSelect.value = ''
   }
 
   deleteButton(event) {

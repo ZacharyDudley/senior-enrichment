@@ -8,6 +8,7 @@ class CampusMenu extends Component {
     super()
 
     this.submit = this.submit.bind(this)
+    this.activateButton = this.activateButton.bind(this)
   }
 
   render () {
@@ -37,12 +38,12 @@ class CampusMenu extends Component {
         <h3>CREATE NEW CAMPUS</h3>
         <form name="newCampusForm" onSubmit={this.submit}>
         <div>
-          <input name="campusName" type="text" placeholder="Campus name" />
+          <input id="campusName" name="campusName" type="text" placeholder="Campus name" onChange={this.activateButton} />
           </div>
           <div>
           <input name="campusImage" type="text" placeholder="Campus picture URL" />
           </div>
-          <button type="submit">CREATE</button>
+          <button id="buttonCreateCampus" type="submit" disabled="true">CREATE</button>
         </form>
       </div>
     )
@@ -57,6 +58,16 @@ class CampusMenu extends Component {
     event.target.campusImage.value = ''
   }
 
+  activateButton() {
+    let campusName = document.getElementById('campusName')
+    let createButton = document.getElementById('buttonCreateCampus')
+
+    if (campusName.value) {
+      createButton.disabled = false
+    } else {
+      createButton.disabled = true
+    }
+  }
 
 }
 
