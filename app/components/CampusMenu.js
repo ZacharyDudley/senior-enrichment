@@ -25,7 +25,7 @@ class CampusMenu extends Component {
       }
       </ul>
 
-      <div id="submitCampusBox">
+      <div className="submitBox">
         { this.submitNewCampus() }
       </div>
       </div>
