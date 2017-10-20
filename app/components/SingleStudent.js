@@ -30,7 +30,7 @@ class SingleStudent extends Component {
 
   alterStudent () {
     return (
-      <div id="alterStudentBox">
+      <div className="alterBox">
         <h3>EDIT STUDENT</h3>
         <form name="alterStudentForm" onSubmit={this.submitEdit}>
           <div>
@@ -53,7 +53,7 @@ class SingleStudent extends Component {
           // }
           // </select>
         }
-          <button type="submit" name="editStudent">EDIT</button>
+          <button className="submitButton" type="submit" name="editStudent">EDIT</button>
           </form>
           <button type="button" name="deleteStudent" onClick={this.deleteButton}>DELETE STUDENT</button>
       </div>

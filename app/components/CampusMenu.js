@@ -34,7 +34,7 @@ class CampusMenu extends Component {
 
   submitNewCampus () {
     return (
-      <div id="newCampusBox">
+      <div className="alterBox">
         <h3>CREATE NEW CAMPUS</h3>
         <form name="newCampusForm" onSubmit={this.submit}>
         <div>

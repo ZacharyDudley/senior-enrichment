@@ -33,7 +33,7 @@ class StudentMenu extends Component {
 
   submitNewStudent () {
     return (
-      <div id="newStudentBox">
+      <div className="alterBox">
         <h3>CREATE NEW STUDENT</h3>
         <form name="newStudent" onSubmit={this.submit}>
         <div>

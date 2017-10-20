@@ -45,7 +45,7 @@ class SingleCampus extends Component {
 
   alterCampus () {
     return (
-      <div id="alterCampusBox">
+      <div className="alterBox">
         <h3>EDIT CAMPUS</h3>
         <form name="alterCampusForm" onSubmit={this.submitEdit}>
           <div>
